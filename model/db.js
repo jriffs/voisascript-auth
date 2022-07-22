@@ -1,4 +1,4 @@
-const test = require('dotenv').config()
+// const test = require('dotenv').config()
 const mysql = require('mysql2')
 // const { Unique } = require('../utils/generate-random')
 
