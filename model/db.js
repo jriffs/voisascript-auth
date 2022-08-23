@@ -12,75 +12,69 @@ connection.connect((err) => {
   console.log("successfully connected 👍👍");
 });
 
-async function getAll(onRowsReceived) {
+async function getAll() {
   const query_string = `SELECT * FROM Users`;
   connection.query(query_string, (err, rows) => {
     if (err) {
-      return onRowsReceived(err);
+      return 500;
     }
-    return onRowsReceived(null, rows);
+    return rows;
   });
 }
 
-async function createNewUser(
-  { Full_Name, Email, Username, Password },
-  onReceived
-) {
+async function createNewUser({ Full_Name, Email, Username, Password }) {
   const query_string_1 = `SELECT * FROM Users WHERE Full_Name='${Full_Name}' AND Username='${Username}'`;
   const query_string_2 = `INSERT INTO Users (Full_Name, Email, Username, Password)
     VALUES ('${Full_Name}', '${Email}', '${Username}', '${Password}')`;
   connection.query(query_string_1, (err, rows) => {
-    if (err) return onReceived(err);
+    if (err) return 500;
     if (rows && rows.length > 0) {
-      return onReceived(`User with that name & username already exists`);
+      return 419;
     }
     connection.query(query_string_2, (err, rows) => {
-      if (err) return onReceived(err);
+      if (err) return 500;
       if (rows && rows.insertId) {
-        return onReceived(null, `record inserted succesfully`);
+        return 200;
       }
-      return onReceived(`oops ... something went wrong`);
+      return 500;
     });
   });
 }
 
-async function UpdateUser(
-  { id, Full_Name, Email, Username, Password },
-  onReceived
-) {
+async function UpdateUser({ id, Full_Name, Email, Username, Password }) {
   const query_string_1 = `SELECT * FROM Users WHERE id='${id}'`;
   const query_string_2 = `UPDATE Users 
     SET Full_Name='${Full_Name}', Email='${Email}', Username='${Username}', Password='${Password}' 
     WHERE id=${id}`;
   connection.query(query_string_1, (err, rows) => {
-    if (err) return onReceived(err);
+    if (err) return 500;
     if (rows.length == 0) {
-      return onReceived(`no records match that id`);
+      return 404;
     }
     connection.query(query_string_2, (err, rows) => {
-      if (err) return onReceived(err);
+      if (err) return 500;
       if (rows && rows.insertId == 0) {
-        return onReceived(null, `record updated succesfully`);
+        return 200;
       }
-      return onReceived(`oops ... something went wrong`);
+      return 500;
     });
   });
 }
 
-async function DeleteUser({ id }, onReceived) {
+async function DeleteUser({ id }) {
   const query_string_1 = `SELECT * FROM Users WHERE id='${id}'`;
   const query_string_2 = `delete from Users where id='${id}'`;
   connection.query(query_string_1, (err, rows) => {
-    if (err) return onReceived(err);
+    if (err) return 500;
     if (rows.length == 0) {
-      return onReceived(`no records match that id`);
+      return 404;
     }
     connection.query(query_string_2, (err, rows) => {
-      if (err) return onReceived(err);
+      if (err) return 500;
       if (rows && rows.insertId == 0) {
-        return onReceived(null, `record deleted succesfully`);
+        return 200;
       }
-      return onReceived(`oops ... something went wrong`);
+      return 500;
     });
   });
 }

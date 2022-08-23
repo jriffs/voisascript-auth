@@ -1,8 +1,14 @@
 const userRoute = require("express").Router();
-const loginController = require("../controller/loginController");
-const signupController = require("../controller/signupController");
+const {
+  signupController,
+  updateController,
+  getAllUserController,
+  deleteUserController,
+} = require("../controller/controller");
 
-userRoute.post("/login", loginController);
 userRoute.post("/register", signupController);
+userRoute.put("/update/:id", updateController);
+userRoute.get("/get/all", getAllUserController);
+userRoute.delete("/delete/:id", deleteUserController);
 
 module.exports = userRoute;
