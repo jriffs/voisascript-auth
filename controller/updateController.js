@@ -5,34 +5,24 @@ const updateController = async (req, res) => {
   const { fullname, email, username, password } = req.body;
   const { id } = req.params;
   const mainPassword = await argon2.hash(password);
-  const result = await UpdateUser({
-    id: id,
-    Full_Name: fullname,
-    Email: email,
-    Username: username,
-    Password: mainPassword,
-  });
-  switch (result) {
-    case 404:
-      res.status(result).json({
-        status: false,
-        message: "No user found with this id",
-      });
-      break;
-    case 500:
-      res
-        .status(result)
-        .json({ status: false, message: "Server error, try again" });
-      break;
-    case 200:
-      res.status(result).json({
-        status: true,
-        message: "User infomation updated successfully",
-      });
-      break;
-    default:
-      break;
-  }
+  UpdateUser(
+    {
+      id: id,
+      Full_Name: fullname,
+      Email: email,
+      Username: username,
+      Password: mainPassword,
+    },
+    (err) => {
+      if (err) {
+        res.status(500).json({ status: false, message: "Error updating user" });
+      } else {
+        res
+          .status(200)
+          .json({ status: true, message: "User updated successfully" });
+      }
+    }
+  );
 };
 
 module.exports = updateController;
