@@ -7,7 +7,7 @@ const localBodyParser = require('./utils/localBodyParser')
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, type: 'multipart/form-data' }));
-app.use(localBodyParser)
+// app.use(localBodyParser) // use when req.body is empty
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
