@@ -1,7 +1,8 @@
 // const test = require('dotenv').config()
 const mysql = require("mysql2");
-// const { Unique } = require('../utils/generate-random')
 
+const Unique  = require('uuid').v4()
+require('dotenv').config()
 let db_URL = process.env.DATABASE_URL;
 const connection = mysql.createConnection(db_URL);
 
@@ -21,14 +22,24 @@ async function getAll(onRowsReceived) {
     return onRowsReceived(null, rows);
   });
 }
+async function getOne(id, onRowsReceived) {
+  const query_string = `SELECT * FROM Users WHERE id=${id}`;
+  connection.query(query_string, (err, rows) => {
+    if (err) {
+      return onRowsReceived(err);
+    }
+    return onRowsReceived(null, rows);
+  });
+}
 
 async function createNewUser(
   { Full_Name, Email, Username, Password },
   onReceived
 ) {
+  const id = Unique
   const query_string_1 = `SELECT * FROM Users WHERE Full_Name='${Full_Name}' AND Username='${Username}'`;
-  const query_string_2 = `INSERT INTO Users (Full_Name, Email, Username, Password)
-    VALUES ('${Full_Name}', '${Email}', '${Username}', '${Password}')`;
+  const query_string_2 = `INSERT INTO Users (id, Full_Name, Email, Username, Password)
+    VALUES ('${id}', '${Full_Name}', '${Email}', '${Username}', '${Password}')`;
   connection.query(query_string_1, (err, rows) => {
     if (err) return onReceived(err);
     if (rows && rows.length > 0) {
@@ -36,10 +47,6 @@ async function createNewUser(
     }
     connection.query(query_string_2, (err, rows) => {
       if (err) return onReceived(err);
-      if (rows && rows.insertId) {
-        return onReceived(null, `record inserted succesfully`);
-      }
-      return onReceived(`oops ... something went wrong`);
     });
   });
 }
@@ -59,10 +66,6 @@ async function UpdateUser(
     }
     connection.query(query_string_2, (err, rows) => {
       if (err) return onReceived(err);
-      if (rows && rows.insertId == 0) {
-        return onReceived(null, `record updated succesfully`);
-      }
-      return onReceived(`oops ... something went wrong`);
     });
   });
 }
@@ -77,10 +80,6 @@ async function DeleteUser({ id }, onReceived) {
     }
     connection.query(query_string_2, (err, rows) => {
       if (err) return onReceived(err);
-      if (rows && rows.insertId == 0) {
-        return onReceived(null, `record deleted succesfully`);
-      }
-      return onReceived(`oops ... something went wrong`);
     });
   });
 }
@@ -92,4 +91,4 @@ async function DeleteUser({ id }, onReceived) {
     console.log(result)
 }) */
 
-module.exports = { getAll, createNewUser, UpdateUser, DeleteUser };
+module.exports = { getAll, createNewUser, UpdateUser, DeleteUser, getOne };
