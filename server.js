@@ -1,8 +1,8 @@
 import express from "express";
 import userRoute from "./routes/userRoute.js";
 import cors from "cors";
-const app = express();
 import localBodyParser from "./utils/localBodyParser.js";
+const app = express();
 
 app.use(cors());
 app.use(express.json());
