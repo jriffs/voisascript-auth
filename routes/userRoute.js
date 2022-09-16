@@ -1,14 +1,16 @@
-const userRoute = require("express").Router();
-const {
+import express from "express";
+import {
   signupController,
   updateController,
   getAllUserController,
   deleteUserController,
-} = require("../controller/controller");
+} from "../controller/controller.js";
+
+const userRoute = express.Router();
 
 userRoute.post("/register", signupController);
 userRoute.put("/update/:id", updateController);
 userRoute.get("/get/all", getAllUserController);
 userRoute.delete("/delete/:id", deleteUserController);
 
-module.exports = userRoute;
+export default userRoute;

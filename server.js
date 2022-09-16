@@ -1,12 +1,12 @@
-const express = require("express");
-const userRoute = require("./routes/userRoute");
+import express from "express";
+import userRoute from "./routes/userRoute.js";
+import cors from "cors";
+import localBodyParser from "./utils/localBodyParser.js";
 const app = express();
-const cors = require("cors");
-const localBodyParser = require('./utils/localBodyParser')
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true, type: 'multipart/form-data' }));
+app.use(express.urlencoded({ extended: true, type: "multipart/form-data" }));
 // app.use(localBodyParser) // use when req.body is empty
 const port = process.env.PORT || 3000;
 

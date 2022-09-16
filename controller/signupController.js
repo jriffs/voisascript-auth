@@ -1,5 +1,5 @@
-const argon2 = require("argon2");
-const { createNewUser } = require("../model/db");
+import argon2 from "argon2";
+import { createNewUser } from "../model/db.js";
 
 const signupController = async (req, res) => {
   const { fullname, email, username, password } = req.body;
@@ -25,4 +25,4 @@ const signupController = async (req, res) => {
   );
 };
 
-module.exports = signupController;
+export default signupController;
