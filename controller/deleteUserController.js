@@ -1,4 +1,4 @@
-const { DeleteUser } = require("../model/db");
+import { DeleteUser } from "../model/db.js";
 
 const deleteUserController = (req, res) => {
   const { id } = req.params;
@@ -11,4 +11,4 @@ const deleteUserController = (req, res) => {
   });
 };
 
-module.exports = deleteUserController;
+export default deleteUserController;

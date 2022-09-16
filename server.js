@@ -1,7 +1,7 @@
-const express = require("express");
-const userRoute = require("./routes/userRoute");
+import express from "express";
+import userRoute from "./routes/userRoute.js";
+import cors from "cors";
 const app = express();
-const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());

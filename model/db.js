@@ -1,5 +1,5 @@
 // const test = require('dotenv').config()
-const mysql = require("mysql2");
+import mysql from "mysql2";
 // const { Unique } = require('../utils/generate-random')
 
 let db_URL = process.env.DATABASE_URL;
@@ -92,4 +92,4 @@ async function DeleteUser({ id }, onReceived) {
     console.log(result)
 }) */
 
-module.exports = { getAll, createNewUser, UpdateUser, DeleteUser };
+export { getAll, createNewUser, UpdateUser, DeleteUser };

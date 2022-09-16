@@ -1,4 +1,4 @@
-const { getAll } = require("../model/db");
+import { getAll } from "../model/db.js";
 
 const getAllUserController = (req, res) => {
   getAll((err, result) => {
@@ -10,4 +10,4 @@ const getAllUserController = (req, res) => {
   });
 };
 
-module.exports = getAllUserController;
+export default getAllUserController;

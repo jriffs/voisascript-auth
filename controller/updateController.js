@@ -1,5 +1,5 @@
-const argon2 = require("argon2");
-const { UpdateUser } = require("../model/db");
+import argon2 from "argon2";
+import { UpdateUser } from "../model/db.js";
 
 const updateController = async (req, res) => {
   const { fullname, email, username, password } = req.body;
@@ -25,4 +25,4 @@ const updateController = async (req, res) => {
   );
 };
 
-module.exports = updateController;
+export default updateController;

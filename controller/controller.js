@@ -1,9 +1,9 @@
-const updateController = require("./updateController");
-const signupController = require("./signupController");
-const getAllUserController = require("./getAllUserController");
-const deleteUserController = require("./deleteUserController");
+import updateController from "./updateController.js";
+import signupController from "./signupController.js";
+import getAllUserController from "./getAllUserController.js";
+import deleteUserController from "./deleteUserController.js";
 
-module.exports = {
+export {
   signupController,
   updateController,
   getAllUserController,
