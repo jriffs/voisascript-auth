@@ -1,13 +1,9 @@
 // const test = require('dotenv').config()
-<<<<<<< HEAD
 import mysql from "mysql2";
 // const { Unique } = require('../utils/generate-random')
-=======
-const mysql = require("mysql2");
->>>>>>> 7c6aaddfd03e010464fb9a54c591480ed0c27b1a
 
-const Unique  = require('uuid').v4()
-require('dotenv').config()
+const Unique = require("uuid").v4();
+require("dotenv").config();
 let db_URL = process.env.DATABASE_URL;
 const connection = mysql.createConnection(db_URL);
 
@@ -41,7 +37,7 @@ async function createNewUser(
   { Full_Name, Email, Username, Password },
   onReceived
 ) {
-  const id = Unique
+  const id = Unique;
   const query_string_1 = `SELECT * FROM Users WHERE Full_Name='${Full_Name}' AND Username='${Username}'`;
   const query_string_2 = `INSERT INTO Users (id, Full_Name, Email, Username, Password)
     VALUES ('${id}', '${Full_Name}', '${Email}', '${Username}', '${Password}')`;
@@ -96,8 +92,4 @@ async function DeleteUser({ id }, onReceived) {
     console.log(result)
 }) */
 
-<<<<<<< HEAD
-export { getAll, createNewUser, UpdateUser, DeleteUser };
-=======
-module.exports = { getAll, createNewUser, UpdateUser, DeleteUser, getOne };
->>>>>>> 7c6aaddfd03e010464fb9a54c591480ed0c27b1a
+export { getAll, createNewUser, UpdateUser, DeleteUser, getOne };

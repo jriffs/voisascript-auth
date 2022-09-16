@@ -2,8 +2,7 @@ import express from "express";
 import userRoute from "./routes/userRoute.js";
 import cors from "cors";
 const app = express();
-const cors = require("cors");
-const localBodyParser = require("./utils/localBodyParser");
+import localBodyParser from "./utils/localBodyParser.js";
 
 app.use(cors());
 app.use(express.json());
