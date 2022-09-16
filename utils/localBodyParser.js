@@ -31,4 +31,4 @@ function localBodyParser(req, res, next) {
     next()
 }
 
-module.exports = localBodyParser
+export default localBodyParser

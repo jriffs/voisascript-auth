@@ -1,9 +1,11 @@
 // const test = require('dotenv').config()
 import mysql from "mysql2";
-// const { Unique } = require('../utils/generate-random')
+import { v4 } from "uuid";
+import { config } from "dotenv";
 
-const Unique = require("uuid").v4();
-require("dotenv").config();
+config();
+
+const Unique = v4();
 let db_URL = process.env.DATABASE_URL;
 const connection = mysql.createConnection(db_URL);
 
@@ -48,6 +50,7 @@ async function createNewUser(
     }
     connection.query(query_string_2, (err, rows) => {
       if (err) return onReceived(err);
+      return onReceived(null)
     });
   });
 }
@@ -67,6 +70,7 @@ async function UpdateUser(
     }
     connection.query(query_string_2, (err, rows) => {
       if (err) return onReceived(err);
+      return onReceived(null)
     });
   });
 }
@@ -81,6 +85,7 @@ async function DeleteUser({ id }, onReceived) {
     }
     connection.query(query_string_2, (err, rows) => {
       if (err) return onReceived(err);
+      return onReceived(null)
     });
   });
 }

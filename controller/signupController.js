@@ -13,14 +13,13 @@ const signupController = async (req, res) => {
     },
     (err) => {
       if (err) {
-        res
+        return res
           .status(500)
-          .json({ status: false, message: "Error registering user" });
-      } else {
-        res
+          .json({ status: false, message: `Error registering user: ${err}` });
+      }
+      return res
           .status(200)
           .json({ status: true, message: "Registration Successful" });
-      }
     }
   );
 };

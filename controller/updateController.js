@@ -15,12 +15,11 @@ const updateController = async (req, res) => {
     },
     (err) => {
       if (err) {
-        res.status(500).json({ status: false, message: "Error updating user" });
-      } else {
-        res
-          .status(200)
-          .json({ status: true, message: "User updated successfully" });
+        return res.status(500).json({ status: false, message: `Error updating user: ${err}` });
       }
+      return res
+      .status(200)
+      .json({ status: true, message: "User updated successfully" });
     }
   );
 };
