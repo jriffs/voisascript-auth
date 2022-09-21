@@ -1,5 +1,5 @@
 async function getUserData(endPoint, username){
-  //   endPoint ---- string
+  //   endPoint ---- string ----- always add a forward slash / in front of the endpoint url
   //   username ------ string
   // dynamic url
   let url = endPoint + username;
