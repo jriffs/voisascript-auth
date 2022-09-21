@@ -1,8 +1,8 @@
-async function getUserData(hostUrl, username){
-  //   hostUrl ---- string
+async function getUserData(endPoint, username){
+  //   endPoint ---- string
   //   username ------- string
   // dynamic url
-  let url = hostUrl + username;
+  let url = endPoint + username;
   let option = {
     method: "GET",
     headers:{
