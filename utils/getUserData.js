@@ -1,6 +1,6 @@
 async function getUserData(endPoint, username){
   //   endPoint ---- string
-  //   username ------- string
+  //   username ------ string
   // dynamic url
   let url = endPoint + username;
   let option = {
