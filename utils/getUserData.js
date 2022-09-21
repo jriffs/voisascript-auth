@@ -1,6 +1,8 @@
-async function getUserData(username){
-  // url this is just a dommy url from the dommy server i created
-  let url = "http://127.0.0.1:3000/projects/" + username;
+async function getUserData(hostUrl, username){
+  //   hostUrl ---- string
+  //   username ------- string
+  // dynamic url
+  let url = hostUrl + username;
   let option = {
     method: "GET",
     headers:{
