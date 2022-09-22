@@ -1,14 +1,12 @@
 async function getUserData(endPoint, username){
-  //   endPoint ---- string ----- always add a forward slash / in front of the endpoint url
-  //   username ------ string
   // dynamic url
-  let url = endPoint + username;
+  let url = "/${endPoint}/${username}"
   let option = {
     method: "GET",
     headers:{
       Accept: "*",
+      originator: "auth"
     },
-    Origin: "auth"
   }
   try{
     let response = await fetch(url, option);
