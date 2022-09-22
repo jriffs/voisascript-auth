@@ -1,6 +1,6 @@
 async function getUserData(endPoint, username){
   // dynamic url
-  let url = "/${endPoint}/${username}"
+  let url = `/${endPoint}/${username}`
   let option = {
     method: "GET",
     headers:{
