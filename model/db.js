@@ -25,13 +25,13 @@ async function getAll(onRowsReceived) {
     return onRowsReceived(null, rows);
   });
 }
-async function getOne(id, onRowsReceived) {
+async function getOne(id, onReceived) {
   const query_string = `SELECT * FROM Users WHERE id=${id}`;
   connection.query(query_string, (err, rows) => {
     if (err) {
-      return onRowsReceived(err);
+      return onReceived(err);
     }
-    return onRowsReceived(null, rows);
+    return onReceived(null, rows);
   });
 }
 
