@@ -5,6 +5,7 @@ import {
   getAllUserController,
   deleteUserController,
   validateUserController,
+  getOneController,
 } from "../controller/controller.js";
 
 const userRoute = express.Router();
@@ -12,6 +13,7 @@ const userRoute = express.Router();
 userRoute.post("/register", signupController);
 userRoute.put("/update/:id", updateController);
 userRoute.get("/get/all", getAllUserController);
+userRoute.get("/get/:id", getOneController)
 userRoute.delete("/delete/:id", deleteUserController);
 userRoute.get("/validate", validateUserController)
 
