@@ -20,19 +20,19 @@ connection.connect((err) => {
 
 async function getAll() {
   const query_string = `SELECT * FROM Users`;
-  const result = await query(query_string).then((result) => {return result}, (err) => {return err})
+  const result = await query(query_string).then((result) => { return result }, (err) => { return err })
   if (result?.errno) {
-    return {error: `${result.code}`}
+    return { error: `${result.code}` }
   }
-  return result
+  return { result: result }
 }
 async function getOne(id) {
   const query_string = `SELECT * FROM Users WHERE id='${id}'`;
-  const result = await query(query_string).then((result) => {return result}, (err) => {return err})
+  const result = await query(query_string).then((result) => { return result }, (err) => { return err })
   if (result?.errno) {
-    return {error: `${result.code}`}
+    return { error: `${result.code}` }
   }
-  return result
+  return { result: result }
 }
 
 async function createNewUser({ Full_Name, Email, Username, Password }) {
@@ -40,18 +40,18 @@ async function createNewUser({ Full_Name, Email, Username, Password }) {
   const query_string_1 = `SELECT * FROM Users WHERE Full_Name='${Full_Name}' AND Username='${Username}'`;
   const query_string_2 = `INSERT INTO Users (id, Full_Name, Email, Username, Password)
   VALUES ('${id}', '${Full_Name}', '${Email}', '${Username}', '${Password}')`;
-  const result_1 = await query(query_string_1).then((result) => {return result}, (err) => {return err})
+  const result_1 = await query(query_string_1).then((result) => { return result }, (err) => { return err })
   if (result_1?.errno) {
-    return {error: `${result_1.code}`}
+    return { error: `${result_1.code}` }
   }
   if (result_1.length > 0) {
-    return {error: `User with that name & username already exists`}
+    return { error: `User with that name & username already exists` }
   }
-  const result = await query(query_string_2).then((result) => {return result}, (err) => {return err})
+  const result = await query(query_string_2).then((result) => { return result }, (err) => { return err })
   if (result?.errno) {
-    return {error: `${result.code}`}
+    return { error: `${result.code}` }
   }
-  return {success: `Registration Successful`}
+  return { success: `Registration Successful` }
 
 }
 
@@ -60,36 +60,36 @@ async function UpdateUser({ id, Full_Name, Email, Username, Password }) {
   const query_string_2 = `UPDATE Users 
   SET Full_Name='${Full_Name}', Email='${Email}', Username='${Username}', Password='${Password}' 
   WHERE id=${id}`;
-  const result_1 = await query(query_string_1).then((result) => {return result}, (err) => {return err})
+  const result_1 = await query(query_string_1).then((result) => { return result }, (err) => { return err })
   if (result_1?.errno) {
-    return {error: `${result_1.code}`}
+    return { error: `${result_1.code}` }
   }
   if (result_1.length == 0) {
-    return {error: `User with that id does not exist`}
+    return { error: `User with that id does not exist` }
   }
-  const result = await query(query_string_2).then((result) => {return result}, (err) => {return err})
+  const result = await query(query_string_2).then((result) => { return result }, (err) => { return err })
   if (result?.errno) {
-    return {error: `${result.code}`}
+    return { error: `${result.code}` }
   }
-  return {success: `User Update Successful`}
+  return { success: `User Update Successful` }
 
 }
 
-async function DeleteUser({ id }, onReceived) {
+async function DeleteUser({ id }) {
   const query_string_1 = `SELECT * FROM Users WHERE id='${id}'`;
   const query_string_2 = `delete from Users where id='${id}'`;
-  const result_1 = await query(query_string_1).then((result) => {return result}, (err) => {return err})
+  const result_1 = await query(query_string_1).then((result) => { return result }, (err) => { return err })
   if (result_1?.errno) {
-    return {error: `${result_1.code}`}
+    return { error: `${result_1.code}` }
   }
   if (result_1.length == 0) {
-    return {error: `User with that id does not exist`}
+    return { error: `User with that id does not exist` }
   }
-  const result = await query(query_string_2).then((result) => {return result}, (err) => {return err})
+  const result = await query(query_string_2).then((result) => { return result }, (err) => { return err })
   if (result?.errno) {
-    return {error: `${result.code}`}
+    return { error: `${result.code}` }
   }
-  return {success: `User Delete Successful`}
+  return { success: `User Delete Successful` }
 }
 
 export { getAll, createNewUser, UpdateUser, DeleteUser, getOne };
