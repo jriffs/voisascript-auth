@@ -4,11 +4,8 @@ import {
   updateController,
   getAllUserController,
   deleteUserController,
-<<<<<<< HEAD
-  getUserController
-=======
   validateUserController,
->>>>>>> cb6e8326bd3f14dcfe4c8eab63e0e68a02ee999d
+  getUserController
 } from "../controller/controller.js";
 
 const userRoute = express.Router();
