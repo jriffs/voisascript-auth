@@ -25,7 +25,7 @@ const signupController = async (req, res) => {
       if (result) {
         return res
           .status(201)
-          .json({ status: true, message: `Registering user successful!`, token: createToken(newUser.id) });
+          .send({ status: true, message: `Registering user successful!`, accessToken: createToken(newUser.id) });
       }
     
         return res
