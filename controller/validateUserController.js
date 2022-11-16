@@ -7,7 +7,7 @@ const validateUserController = (req, res) => {
   const authorization = req.headers["authorization"].split(" ");
   const payload = jwt.verify(authorization[1], process.env.JWT_KEY);
   if (!payload.data.id) {
-    res.sendstatus(401);
+    res.sendStatus(401);
   } else {
     const { id, password, username } = payload.data;
     getOne(id, (err, result) => {
