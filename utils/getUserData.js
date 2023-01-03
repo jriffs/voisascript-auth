@@ -1,18 +1,28 @@
-async function getUserData(endPoint, username){
+import fetch from "node-fetch";
+
+async function getUserData(endPoint, userID) {
   // dynamic url
-  let url = `/${endPoint}/${username}`
+  let url = `http://localhost:5000/${endPoint}/${userID}`
   let option = {
     method: "GET",
-    headers:{
+    headers: {
       Accept: "*",
       originator: "auth"
     },
   }
-  try{
+  try {
     let response = await fetch(url, option);
-    let data = await response.json();
-     return data;
-  }catch(err){
+    let { finalProjectsArr, projectStat, finalFilesArr, fileStat } = await response.json();
+    return {
+      userId: userID,
+      projects: finalProjectsArr,
+      files: finalFilesArr,
+      stats: {
+        projects: projectStat,
+        files: fileStat
+      }
+    };
+  } catch (err) {
     return err;
   }
 }
