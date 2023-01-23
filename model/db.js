@@ -51,7 +51,7 @@ async function createNewUser({ Full_Name, Email, Username, Password }) {
   if (result?.errno) {
     return { error: `${result.code}` }
   }
-  return { success: `Registration Successful` }
+  return { success: `Registration Successful`, id }
 
 }
 
