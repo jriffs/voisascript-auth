@@ -5,6 +5,7 @@ import getUserData from "../utils/getUserData.js";
 // config();
 
 const validateUserController = async (req, res) => {
+  console.log('validate started')
   try {
     const isSignIn = req.query['sign-in']
     // console.log(isSignIn)
@@ -58,6 +59,7 @@ const validateUserController = async (req, res) => {
       }
     }
   } catch (error) {
+    console.log(error)
     res.status(400).json({
       error: error
     })
