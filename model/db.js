@@ -1,10 +1,10 @@
 // const test = require('dotenv').config()
 import mysql from "mysql2";
 import { v4 } from "uuid";
-import { config } from "dotenv";
+// import { config } from "dotenv";
 import { promisify } from "util";
 
-config();
+// config();
 
 
 let db_URL = process.env.DATABASE_URL;
