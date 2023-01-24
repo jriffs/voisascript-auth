@@ -10,7 +10,7 @@ const validateUserController = async (req, res) => {
     // console.log(isSignIn)
     const authorization = req.headers["authorization"].split(" ");
     const payload = jwt.verify(authorization[1], /* process.env.JWT_KEY */ 'secretkey');
-    // console.log(payload)
+    console.log(payload)
     if (!payload.userId) {
       res.status(401).send({error: 'Invalid bearer token'});
       return
