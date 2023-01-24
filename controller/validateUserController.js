@@ -10,6 +10,7 @@ const validateUserController = async (req, res) => {
     const isSignIn = req.query['sign-in']
     // console.log(isSignIn)
     const authorization = req.headers["authorization"].split(" ");
+    console.log(authorization)
     const payload = jwt.verify(authorization[1], /* process.env.JWT_KEY */ 'secretkey');
     console.log(payload)
     if (!payload.userId) {
