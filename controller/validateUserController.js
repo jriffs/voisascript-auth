@@ -1,8 +1,8 @@
-import { config } from "dotenv";
+// import { config } from "dotenv";
 import { getOne } from "../model/db.js";
 import jwt from "jsonwebtoken";
 import getUserData from "../utils/getUserData.js";
-config();
+// config();
 
 const validateUserController = async (req, res) => {
   try {
