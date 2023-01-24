@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 
 async function getUserData(endPoint, userID) {
   // dynamic url
-  let url = `http://localhost:5000/${endPoint}/${userID}`
+  let url = `https://voisascript-file-storage.herokuapp.com/${endPoint}/${userID}`
   let option = {
     method: "GET",
     headers: {
