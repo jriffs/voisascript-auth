@@ -21,7 +21,7 @@ async function signUp(e) {
     }
     const sign_up_form = document.querySelector("#sign-up-form")
     const data =  new FormData(sign_up_form)
-    const response = await fetch('http://localhost:3000/user/register', {
+    const response = await fetch('https://voisascript-auth.herokuapp.com/user/register', {
         method: 'POST',
         body: data
     })
