@@ -59,7 +59,8 @@ function validate() {
     return true
 }
 
-function showPasswd() {
+function showPasswd(e) {
+    e.preventDefault()
     if (pass_input.getAttribute("type") == "password") {
         pass_input.setAttribute("type", "text")
         showPass.innerHTML = ``
