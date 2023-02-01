@@ -156,12 +156,11 @@ button{
     .sign-up-area {
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         min-width: 100%;
         min-height: 70%;
-        margin-block-start: -50%;
     }
-    
+
     .card form input {
         margin-inline: 16px;
         margin-block: 15px;
